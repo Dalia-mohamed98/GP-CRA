@@ -50,7 +50,7 @@ if [ "${stage}" -le 0 ] && [ "${stop_stage}" -ge 0 ]; then
         --train_set "${train_set}" \
         --dev_set "${dev_set}" \
         --eval_set "${eval_set}" \
-        "${download_dir}/LJSpeech-1.1" data
+        "${download_dir}/Mary's-Voice" data
 fi
 
 stats_ext=$(grep -q "hdf5" <(yq ".format" "${conf}") && echo "h5" || echo "npy")

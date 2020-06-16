@@ -17,7 +17,7 @@ n_jobs=1      # number of parallel jobs in feature extraction
 conf=conf/parallel_wavegan.v1.yaml
 
 # directory path setting
-download_dir="content/drive/My Drive" # direcotry to save downloaded files
+download_dir="/content/drive/My Drive" # direcotry to save downloaded files
 dumpdir=dump           # directory to dump features
 
 # training related setting

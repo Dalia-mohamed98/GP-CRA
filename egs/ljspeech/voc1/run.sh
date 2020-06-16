@@ -17,7 +17,7 @@ n_jobs=16      # number of parallel jobs in feature extraction
 conf=conf/parallel_wavegan.v1.yaml
 
 # directory path setting
-download_dir=downloads # direcotry to save downloaded files
+download_dir="content/drive/My Drive" # direcotry to save downloaded files
 dumpdir=dump           # directory to dump features
 
 # training related setting
@@ -50,7 +50,7 @@ if [ "${stage}" -le 0 ] && [ "${stop_stage}" -ge 0 ]; then
         --train_set "${train_set}" \
         --dev_set "${dev_set}" \
         --eval_set "${eval_set}" \
-        "${download_dir}/Mary's-Voice" data
+        "${download_dir}/dataset" data
 fi
 
 stats_ext=$(grep -q "hdf5" <(yq ".format" "${conf}") && echo "h5" || echo "npy")
@@ -110,9 +110,12 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
 fi
 
 if [ -z "${tag}" ]; then
-    expdir="exp/${train_set}_ljspeech_$(basename "${conf}" .yaml)"
+    #expdir="exp/${train_set}_ljspeech_$(basename "${conf}" .yaml)"
+    expdir="content/drive/My Drive/checkpoint"
 else
-    expdir="exp/${train_set}_ljspeech_${tag}"
+    #expdir="exp/${train_set}_ljspeech_${tag}"
+    expdir="content/drive/My Drive/checkpoint"
+
 fi
 if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
     echo "Stage 2: Network training"

@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
 
-# Copyright 2020 MINH ANH (@dathudeptrai)
-#  MIT License (https://opensource.org/licenses/MIT)
 
 """Tensorflow MelGAN modules complatible with pytorch."""
 

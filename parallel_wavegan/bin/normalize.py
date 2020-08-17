@@ -1,8 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
-# Copyright 2019 Tomoki Hayashi
-#  MIT License (https://opensource.org/licenses/MIT)
 
 """Normalize feature files and dump them."""
 
@@ -27,7 +23,7 @@ from parallel_wavegan.utils import write_hdf5
 def main():
     """Run preprocessing process."""
     parser = argparse.ArgumentParser(
-        description="Normalize dumped raw features (See detail in parallel_wavegan/bin/normalize.py).")
+        description="Normalize dumped raw features")
     parser.add_argument("--rootdir", default=None, type=str,
                         help="directory including feature files to be normalized. "
                              "you need to specify either *-scp or rootdir.")

@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
-# Copyright 2019 Tomoki Hayashi
-#  MIT License (https://opensource.org/licenses/MIT)
-
-"""Calculate statistics of feature files."""
 
 import argparse
 import logging
@@ -23,7 +17,7 @@ from parallel_wavegan.utils import write_hdf5
 
 
 def main():
-    """Run preprocessing process."""
+
     parser = argparse.ArgumentParser(
         description="Compute mean and variance of dumped raw features "
                     "(See detail in parallel_wavegan/bin/compute_statistics.py).")

@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# Copyright 2019 Tomoki Hayashi
-#  MIT License (https://opensource.org/licenses/MIT)
-
-"""Decode with trained Parallel WaveGAN Generator."""
 
 import argparse
 import logging
@@ -22,11 +15,12 @@ import parallel_wavegan.models
 
 from parallel_wavegan.datasets import MelDataset
 from parallel_wavegan.datasets import MelSCPDataset
+from parallel_wavegan.layers import PQMF
 from parallel_wavegan.utils import read_hdf5
 
 
 def main():
-    """Run decoding process."""
+
     parser = argparse.ArgumentParser(
         description="Decode dumped features with trained Parallel WaveGAN Generator "
                     "(See detail in parallel_wavegan/bin/decode.py).")
@@ -104,19 +98,19 @@ def main():
         device = torch.device("cuda")
     else:
         device = torch.device("cpu")
-    model_class = getattr(
-        parallel_wavegan.models,
-        config.get("generator_type", "ParallelWaveGANGenerator"))
+    model_class = getattr( parallel_wavegan.models, config.get("generator_type", "ParallelWaveGANGenerator"))
     model = model_class(**config["generator_params"])
-    model.load_state_dict(
-        torch.load(args.checkpoint, map_location="cpu")["model"]["generator"])
+    model.load_state_dict( torch.load(args.checkpoint, map_location="cpu")["model"]["generator"])
     logging.info(f"Loaded model parameters from {args.checkpoint}.")
     model.remove_weight_norm()
     model = model.eval().to(device)
-    use_noise_input = not isinstance(
-        model, parallel_wavegan.models.MelGANGenerator)
-    pad_fn = torch.nn.ReplicationPad1d(
-        config["generator_params"].get("aux_context_window", 0))
+    use_noise_input = not isinstance( model, parallel_wavegan.models.MelGANGenerator)
+    pad_fn = torch.nn.ReplicationPad1d(config["generator_params"].get("aux_context_window", 0))
+    if config["generator_params"]["out_channels"] > 1:
+        pqmf = PQMF(
+            subbands=config["generator_params"]["out_channels"],
+            **config.get("pqmf_params", {})
+        ).to(device)
 
     # start generation
     total_rtf = 0.0
@@ -127,12 +121,15 @@ def main():
             if use_noise_input:
                 z = torch.randn(1, 1, len(c) * config["hop_size"]).to(device)
                 x += (z,)
-            c = pad_fn(torch.from_numpy(c).unsqueeze(0).transpose(2, 1)).to(device)
+            c = pad_fn(torch.tensor(c, dtype=torch.float).unsqueeze(0).transpose(2, 1)).to(device)
             x += (c,)
 
             # generate
             start = time.time()
-            y = model(*x).view(-1).cpu().numpy()
+            if config["generator_params"]["out_channels"] == 1:
+                y = model(*x).view(-1).cpu().numpy()
+            else:
+                y = pqmf.synthesis(model(*x)).view(-1).cpu().numpy()
             rtf = (time.time() - start) / (len(y) / config["sampling_rate"])
             pbar.set_postfix({"RTF": rtf})
             total_rtf += rtf
@@ -141,7 +138,7 @@ def main():
             sf.write(os.path.join(config["outdir"], f"{utt_id}_gen.wav"),
                      y, config["sampling_rate"], "PCM_16")
 
-    # report average RTF
+    #  average RTF
     logging.info(f"Finished generation of {idx} utterances (RTF = {total_rtf / idx:.03f}).")
 
 

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/grey"
+    android:layout_height="match_parent"
+    tools:context=".BookInfoAndDownloadActivity">
+
+
+    <Button
+        android:id="@+id/download_book_button"
+        style="@android:style/Widget.Material.Button.Borderless.Small"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button1"
+        android:text="Download Book"
+        android:onClick="Download_files_firebase"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/mainorange"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/upper_background"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/mainblue"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/B_Name__d_act"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:text="Book Name"
+        android:textAllCaps="true"
+        android:textColor="@color/mainorange"
+        android:textSize="60dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/upper_background" />
+
+
+
+    <TextView
+        android:id="@+id/b_Desc__d_act"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="70dp"
+        android:background="@color/grey"
+        android:scrollbars="vertical"
+        android:text="Book Desc"
+        android:textColor="@color/mainorange"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/upper_background" />
+
+    <TextView
+        android:id="@+id/b_categ__d_act"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Category: Science"
+        android:textAlignment="center"
+        android:textColor="@color/mainorange"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/B_Name__d_act" />
+
+    <TextView
+        android:id="@+id/b_voice__d_act"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Voice: Mary Nader"
+        android:textAlignment="center"
+        android:textColor="@color/mainorange"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/B_Name__d_act" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">CRA</string>
+
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string-array name="categories">
+        <item>Category:</item>
+        <item>Business</item>
+        <item>History</item>
+        <item>Literature</item>
+        <item>Health</item>
+        <item>Story</item>
+        <item>Science</item>
+    </string-array>
+
+    <string-array name="voices">
+        <item>Voice of:</item>
+        <item>Mary Nader</item>
+        <item>LJ</item>
+    </string-array>
+</resources>

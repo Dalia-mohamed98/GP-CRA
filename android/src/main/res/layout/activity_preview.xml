@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".PreviewActivity">
+
+    <ImageView
+        android:id="@+id/fast_pb2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="76dp"
+        android:onClick="click_faster_"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/right" />
+
+    <ImageView
+        android:id="@+id/slow_pb2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginBottom="76dp"
+        android:onClick="click_slower_"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/left" />
+
+    <TextView
+        android:id="@+id/speedtext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:text="Playback Speed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fast_pb2"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toEndOf="@+id/slow_pb2" />
+
+    <Spinner
+        android:id="@+id/voice_spinner_"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button1"
+        android:paddingLeft="5dp"
+        android:popupBackground="@drawable/button1"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/Preview_BTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Text_prev"
+        app:layout_constraintVertical_bias="0.176" />
+
+    <Button
+        android:id="@+id/Preview_BTN"
+        style="@android:style/Widget.Material.Button.Borderless.Small"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="156dp"
+        android:background="@drawable/button"
+        android:onClick="Preview_click"
+        android:text="Preview"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/mainblue"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Text_prev"
+        tools:targetApi="lollipop" />
+
+    <EditText
+        android:id="@+id/Text_prev"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:background="@drawable/button1"
+        android:ems="10"
+        android:hint="Enter text here!"
+        android:inputType="textMultiLine"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.311" />
+</androidx.constraintlayout.widget.ConstraintLayout>
